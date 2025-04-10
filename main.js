@@ -1,0 +1,1 @@
+app.use(PrimeVue, { ripple: true });
