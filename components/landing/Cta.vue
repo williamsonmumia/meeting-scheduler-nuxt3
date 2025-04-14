@@ -54,16 +54,13 @@
 </template>
 
 <script setup>
-// Import components if needed
-// import { Card } from 'primevue/card';
-// import { Button } from 'primevue/button';
 import 'primeicons/primeicons.css'
 </script>
 <style>
 /* Import Animate.css for the 'animated flip' effect on the first card */
 @import 'https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css';
 
-/* Define your custom animation classes if not already defined elsewhere */
+
 .animate-enter {
   animation-fill-mode: both;
 }

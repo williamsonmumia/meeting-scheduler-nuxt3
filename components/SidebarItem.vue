@@ -6,14 +6,13 @@
 
             <Button @click="showLoading" label="Create" severity="success" variant="outlined" rounded
                 class="flex gap-4 w-full mt-5 rounded-full">
-                <LucidePlus />
                 Create
             </Button>
 
             <div class="mt-6 space-y-1">
                 <NuxtLink v-for="route in routes" :key="route.link" :to="route.link"
                     class="text-lg group text-primary dark:text-primary-dark flex p-3 w-full justify-start font-medium cursor-pointer rounded-lg transition hover:bg-green-50 dark:hover:bg-green-900"
-                    :class="{ 'bg-green-50': !isDarkMode && currentRoute.path === route.link }">
+                    :class="{ 'bg-green-50': currentRoute.path === route.link }">
                     <div class="flex items-center flex-1">
                         <Icon :name="route.icon" :class="`h-5 w-5 mr-3 ${route.color}`" />
                         {{ route.title }}

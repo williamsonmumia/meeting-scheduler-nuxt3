@@ -45,15 +45,15 @@ import 'primeicons/primeicons.css';
 import FloatLabel from 'primevue/floatlabel';
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { app } from '../pages/config/firebaseConfig';
-import { useRouter } from "vue-router"; // Import Vue Router
-import DatePage from '@/pages/date/index.vue'; // Import the date page
+import { useRouter } from "vue-router"; 
+import DatePage from '@/pages/date/index.vue'; 
 
 const routes = [
     {
         path: '/date',
         component: DatePage,
     },
-    // Add other routes here
+    
 ];
 
 export default {
@@ -67,10 +67,10 @@ export default {
             try {
                 await setDoc(doc(db, 'MeetingEvent', id), {
                     id: id,
-                    eventName: this.eventname, // Use eventname from setup
-                    duration: this.selectedDuration.duration, // Use selectedDuration from setup
-                    locationType: this.location, // Use location from setup
-                    locationUrl: this.url, // Use url from setup
+                    eventName: this.eventname, 
+                    duration: this.selectedDuration.duration, 
+                    locationType: this.location, 
+                    locationUrl: this.url, 
                     businessId: doc(db, 'Business', this.$auth.user.name),
                     createdBy: this.$auth.user.name,
                 });
@@ -90,8 +90,8 @@ export default {
     emits: ['update:value', 'update:value2', 'update:value3', 'update:value4'],
     setup(props, { emit }) {
         const eventname = ref(props.value);
-        const selectedDuration = ref(props.value2 ? { duration: props.value2 } : null); // Ensure selectedDuration is an object
-        const location = ref(props.value3 || {}); // Ensure it's an object
+        const selectedDuration = ref(props.value2 ? { duration: props.value2 } : null);
+        const location = ref(props.value3 || {}); 
         const url = ref(props.value4);
 
         // Options for Select and SelectButton
@@ -107,12 +107,11 @@ export default {
             { icon: 'pi pi-map-marker', value: 'In-Person' },
         ]);
 
-        // Watch for changes and emit updated values
         watch(eventname, (newValue) => {
             emit('update:value', newValue);
         });
         watch(selectedDuration, (newValue) => {
-            emit('update:value2', newValue?.duration); // Emit only the duration string
+            emit('update:value2', newValue?.duration); 
         });
         watch(location, (newValue) => {
             emit('update:value3', newValue);
@@ -121,7 +120,7 @@ export default {
             emit('update:value4', newValue);
         });
 
-        // Initialize router and toast
+    
         const router = useRouter();
         const toast = useToast();
 

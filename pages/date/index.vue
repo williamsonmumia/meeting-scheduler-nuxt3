@@ -4,8 +4,6 @@
         <NuxtLink to="/meeting-type" class="absolute top-4 left-4 text-green-500 hover:underline text-sm sm:text-base">
             Done
         </NuxtLink>
-
-        <!-- Heading -->
         <h1
             class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white mb-14 sm:mb-12 mt-6 sm:mt-12 text-center">
             This is a preview of your event created.
@@ -13,12 +11,10 @@
 
         <!-- Card Container -->
         <div class="w-full max-w-4xl mt-0 space-y-8 sm:space-y-0 sm:flex sm:gap-4">
-            <!-- Date Picker Card (Mobile: Full Width, Desktop: Side by Side) -->
             <div class="w-full sm:w-auto bg-white dark:bg-dark-2 rounded-lg shadow-lg p-4 sm:p-8">
                 <DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" :min-date="new Date()" />
             </div>
 
-            <!-- Time Picker Card (Mobile: Full Width, Desktop: Side by Side) -->
             <div class="w-full sm:w-auto bg-white dark:bg-dark-2 rounded-lg shadow-lg p-4 sm:p-8">
                 <div class="mb-8 sm:mb-12">
                     <label for="timepicker"
@@ -26,9 +22,7 @@
                         Timepicker
                     </label>
                     <div class="relative">
-                        <!-- Timepicker Input with Icons -->
                         <div class="relative flex items-center">
-                            <!-- Clock Icon -->
                             <span class="absolute left-0 pl-3 sm:pl-5 text-dark-5">
                                 <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -47,10 +41,8 @@
                                 placeholder="Select a time" readonly @click="toggleTimepickerVisibility" />
                         </div>
 
-                        <!-- Timepicker Dropdown -->
                         <div v-show="isTimepickerVisible"
                             class="absolute right-0 w-full sm:w-[162px] h-[200px] sm:h-[262px] overflow-hidden overflow-y-auto mt-2 bg-white dark:bg-dark-2 border border-stroke dark:border-dark-3 rounded-md shadow-datepicker p-2 no-scrollbar">
-                            <!-- Time Options -->
                             <div v-for="(time, index) in times" :key="index"
                                 class="time-option cursor-pointer flex gap-1 justify-between" @click="selectTime(time)">
                                 <div
@@ -117,12 +109,10 @@ function generateTimeOptions(interval) {
     return options;
 }
 
-// Watch for changes in duration
 watch(duration, (newDuration) => {
     times.value = generateTimeOptions(newDuration);
 });
 
-// Initialize time options on mount
 onMounted(() => {
     times.value = generateTimeOptions(duration.value);
 });
@@ -131,15 +121,13 @@ definePageMeta({ layout: 'home' });
 </script>
 
 <style>
-/* Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
 
-/* IE and Edge */
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    /* Firefox */
+
 }
 </style>

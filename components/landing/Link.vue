@@ -8,11 +8,10 @@ const props = defineProps({
     block: { type: Boolean, default: false },
     styleName: { type: String as () => StyleType, default: "primary" },
     className: { type: String },
-    // Add image support
-    image: { type: String }, // Path to the image
-    alt: { type: String },    // Alt text for the image
-    width: { type: Number },  // Image width
-    height: { type: Number }, // Image height
+    image: { type: String }, 
+    alt: { type: String },    
+    width: { type: Number },  
+    height: { type: Number }, 
 });
 
 const sizes: Record<SizeType, string> = {

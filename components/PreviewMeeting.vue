@@ -5,7 +5,6 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $auth.user.name }}</h1>
             <p class="text-lg text-gray-600">{{ value }}</p>
 
-            <!-- Duration & Location Section (Same Line) -->
             <div class="flex items-center justify-center gap-4 text-lg text-gray-600 mb-4">
                 <div v-if="value2" class="flex items-center gap-2">
                     <img src="/my-icons/clock.svg" class="w-5 h-5 text-gray-500" />

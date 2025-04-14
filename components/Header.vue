@@ -2,21 +2,16 @@
     <header class="sticky top-0 z-20 border-b bg-background/80 backdrop-blur">
         <!-- Container of flex -->
         <div class="container flex h-16 items-center justify-between">
-            <!-- Logo and page title -->
             <div class="flex items-center gap-3">
                 <button @click="isOpen = true" aria-label="Open menu"
                     class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-background lg:hidden">
                     <span class="sr-only">Button used to open menu</span>
                     <Icon name="heroicons:bars-2" />
                 </button>
-                <!-- Logo -->
-                <!-- Page title -->
                 <a href="/" class="font-sans text-2xl"><span class="font-bold text-green-600">Align</span><span
                         class="text-slate-500">ova</span>
                 </a>
             </div>
-
-            <!-- Right side of header -->
             <div class="flex items-center gap-5">
 
                 <!-- Profile Dropdown menu -->
@@ -59,8 +54,6 @@
 <script setup>
 import { profileMenuOptions } from '../utils/index.ts';
 
-// Initialize routes with profileMenuoptions
 const navitems = ref(profileMenuOptions);
-// Used to open/close menu
 const isOpen = ref(false);
 </script>

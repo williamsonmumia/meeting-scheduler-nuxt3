@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// Define the types more explicitly
 type SizeType = "md" | "lg";
 type StyleType = "outline" | "primary" | "inverted" | "muted";
 
-// Define props with defineProps
 const props = defineProps({
     href: { type: String, required: true },
     size: { type: String as () => SizeType, default: "lg" },

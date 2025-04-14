@@ -7,22 +7,18 @@
                 :style="{ borderTopColor: event?.themeColor }">
 
                 <div class="flex items-center justify-between gap-x-4">
-                    <!-- Event Name (Wraps Properly) -->
                     <p class="mb-4">
                         {{ event?.eventName || "No Name" }}
                     </p>
 
-                    <!-- Settings Button -->
                     <Button icon="pi pi-cog" severity="secondary" aria-haspopup="true" class="mb-3" rounded
                         variant="outlined" :aria-controls="'settings-menu-' + index"
                         @click="toggleMenu($event, index)" />
                     <Toast />
-                    <!-- Inside v-for loop for events -->
                     <Menu :id="'settings-menu-' + event.id" ref="menuRefs" :model="items(event)" :popup="true" />
 
                 </div>
 
-                <!-- Duration and Location -->
                 <div class="flex justify-between items-center">
                     <p class="mt-0 text-muted-foreground text-xs">
                         <i class="pi pi-clock inline h-4 w-4" /> {{ event?.duration }}
@@ -32,10 +28,8 @@
                     </p>
                 </div>
 
-                <!-- Divider -->
                 <hr class="my-3" />
 
-                <!-- Copy Link and Share Button -->
                 <div class="mt-3 flex justify-between">
                     <h2 class="flex gap-2 text-sm text-primary items-center cursor-pointer"
                         @click="onCopyClickHandler(event)">
@@ -44,11 +38,7 @@
                     <Button label="share" severity="success" variant="outlined" rounded />
                 </div>
             </div>
-
-            <!-- Loading Message -->
             <h2 v-if="eventList.length === 0" class="text-center text-gray-500 col-span-full">Loading...</h2>
-
-            <!-- Business Info -->
             <div v-if="businessInfo" class="text-center col-span-full mt-6">
                 <h2 class="font-sans text-2xl text-green-500">Business Info</h2>
                 <p class="text-gray-600">{{ businessInfo.businessName }}</p>
@@ -67,10 +57,7 @@ import { useNuxtApp } from '#app';
 import { getFirestore, collection, query, where, getDocs, doc, getDoc, deleteDoc, orderBy } from 'firebase/firestore';
 import { app } from '../pages/config/firebaseConfig';
 
-// Initialize Firestore
 const db = getFirestore(app);
-
-// Access the auth module
 const { $auth } = useNuxtApp();
 
 // State for event list and business info
@@ -83,23 +70,23 @@ const error = ref(null);
 const getEventList = async () => {
     loading.value = true;
     error.value = null;
-    eventList.value = []; // Reset event list
+    eventList.value = []; 
     try {
         const q = query(
             collection(db, 'MeetingEvent'),
-            where('createdBy', '==', $auth.user.name), // Use $auth.user.email
+            where('createdBy', '==', $auth.user.name),
             orderBy('id', 'desc')
         );
         const querySnapshot = await getDocs(q);
-        console.log('Query Results:', querySnapshot.docs); // Debugging
+        console.log('Query Results:', querySnapshot.docs);
         querySnapshot.forEach((doc) => {
             const eventData = doc.data();
             eventList.value.push({
                 id: doc.id,
                 duration: eventData.duration,
-                eventName: eventData.eventName, // Access eventName
-                locationType: eventData.locationType, // Access locationType
-                locationUrl: eventData.locationUrl, // Access locationUrl
+                eventName: eventData.eventName,
+                locationType: eventData.locationType, 
+                locationUrl: eventData.locationUrl, 
             });
             console.log('Fetched document:', doc.id, doc.data());
         });
@@ -114,19 +101,18 @@ const getEventList = async () => {
 // Fetch business info
 const getBusinessInfo = async () => {
     try {
-        const docRef = doc(db, 'Business', $auth.user.email); // Use $auth.user.email
+        const docRef = doc(db, 'Business', $auth.user.email); 
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            businessInfo.value = docSnap.data(); // Set business info
+            businessInfo.value = docSnap.data(); 
         }
     } catch (error) {
         console.error('Error fetching business info:', error);
     }
 };
 
-// Fetch data when user changes
 watchEffect(() => {
-    console.log('Auth User:', $auth.user); // Debugging
+    console.log('Auth User:', $auth.user); 
     if ($auth?.user) {
         getEventList();
         getBusinessInfo();
@@ -140,7 +126,6 @@ const onDeleteMeetingEvent = async (event) => {
     try {
         await deleteDoc(doc(db, "MeetingEvent", event?.id));
 
-        // Show toast notification
         toast.add({
             severity: 'warn',
             summary: 'Deleted',
@@ -148,7 +133,6 @@ const onDeleteMeetingEvent = async (event) => {
             life: 3000
         });
 
-        // Refresh the event list
         setTimeout(() => {
             getEventList();
         }, 2000);
@@ -156,7 +140,6 @@ const onDeleteMeetingEvent = async (event) => {
     } catch (error) {
         console.error("Error deleting event:", error);
 
-        // Show error toast notification
         toast.add({
             severity: 'error',
             summary: 'Error',
@@ -166,17 +149,15 @@ const onDeleteMeetingEvent = async (event) => {
     }
 };
 
-
-// Copy meeting event URL
 const onCopyClickHandler = (event) => {
     if (!businessInfo.value) return;
     const runtimeConfig = useRuntimeConfig();
     const meetingEventUrl = `${runtimeConfig.public.baseUrl}/${businessInfo.value.businessName}/${event.id}`;
     navigator.clipboard.writeText(meetingEventUrl);
-    alert('Copied to Clipboard'); // Show feedback
+    alert('Copied to Clipboard'); 
 };
 
-const menuRefs = ref([]); // Array of dropdown references
+const menuRefs = ref([]);
 
 const items = (event) => [
     {
@@ -186,11 +167,10 @@ const items = (event) => [
     {
         label: 'Delete',
         icon: 'pi pi-times',
-        command: () => onDeleteMeetingEvent(event) // Calls the delete function with event data
+        command: () => onDeleteMeetingEvent(event)
     }
 ];
 
-// Open the correct menu dropdown
 const toggleMenu = (event, index) => {
     menuRefs.value[index].toggle(event);
 };

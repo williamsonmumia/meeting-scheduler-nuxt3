@@ -1,6 +1,6 @@
 <template>
-  <div class="card flex justify-center items-center h-screen p-4"> <!-- Added padding for smaller screens -->
-    <div class="text-left w-full max-w-md"> <!-- Adjusted width and added max-width -->
+  <div class="card flex justify-center items-center h-screen p-4">
+    <div class="text-left w-full max-w-md"> 
       <Toast />
 
       <Form v-slot="$form" :initialValues="initialValues" :resolver="resolver" @submit="onFormSubmit"
@@ -13,7 +13,7 @@
         </div>
         <DynamicFormLabel>This is your public business name.</DynamicFormLabel>
         <Button type="submit" severity="primary" :disabled="!businessName.trim()" label="Submit"
-          @click="onCreateBusiness" class="mt-4 w-full sm:w-auto" /> <!-- Adjusted button width for responsiveness -->
+          @click="onCreateBusiness" class="mt-4 w-full sm:w-auto" /> 
       </Form>
     </div>
   </div>
@@ -24,7 +24,7 @@ import { reactive } from 'vue';
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { app } from '../config/firebaseConfig';
 import { useToast } from 'primevue/usetoast';
-const { $auth } = useNuxtApp(); // Access Kinde authentication
+const { $auth } = useNuxtApp(); 
 
 const businessName = ref("");
 const toast = useToast();
@@ -46,7 +46,7 @@ onMounted(() => {
 });
 const onCreateBusiness = async () => {
   try {
-    // Get Kinde access token
+    
     const token = await $auth.getAccessToken();
     console.log("Kinde Access Token:", token);
     await setDoc(doc(db, "Business", user.email), {

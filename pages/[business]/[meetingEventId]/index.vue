@@ -63,7 +63,7 @@ const getMeetingBusinessAndEventDetails = async () => {
     const businessSnapshot = await getDocs(businessQuery)
 
     if (!businessSnapshot.empty) {
-      businessInfo.value = businessSnapshot.docs.map(doc => doc.data())[0] // Handling multiple businesses
+      businessInfo.value = businessSnapshot.docs.map(doc => doc.data())[0] 
       console.log('Business data loaded:', businessInfo.value)
     } else {
       throw new Error('Business not found')
@@ -92,7 +92,6 @@ const getMeetingBusinessAndEventDetails = async () => {
   }
 }
 
-// Initial load
 onMounted(() => {
   if (route.params.business && route.params.meetingEventId) {
     getMeetingBusinessAndEventDetails()
@@ -101,7 +100,6 @@ onMounted(() => {
   }
 })
 
-// Watch for route changes
 watch(
   () => route.params,
   (newParams) => {

@@ -1,27 +1,22 @@
 <template>
     <div class="p-8">
-        <!-- Back Button -->
         <NuxtLink to="/dashboard">
             <h2 class="flex gap-2">
                 <Button icon="pi pi-arrow-left" @click="visibleRight = true" />
             </h2>
         </NuxtLink>
 
-        <!-- Page Title -->
         <div class="mt-0">
             <h2 class="font-bold text-2xl my-4">Create New Event</h2>
         </div>
 
-        <!-- Grid Layout for Form and Preview -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-4">
-            <!-- Form Section (Left Column) -->
             <div>
                 <hr class="my-4" />
                 <MeetingForm v-model:value="value1" v-model:value2="value2" v-model:value3="value3"
                     v-model:value4="value4" />
             </div>
 
-            <!-- Preview Section (Right Column) -->
             <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg shadow-sm">
                 <PreviewMeeting :value="value1" :value2="value2" :value3="value3" :value4="value4" />
             </div>
@@ -40,10 +35,9 @@ export default {
         PreviewMeeting,
     },
     setup() {
-        // Reactive variables for the form values
         const value1 = ref('');
         const value2 = ref('');
-        const value3 = ref({ icon: '', value: '' }); // Ensure location is an object
+        const value3 = ref({ icon: '', value: '' }); 
         const value4 = ref('');
 
         return {

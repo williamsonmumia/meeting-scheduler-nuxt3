@@ -79,12 +79,12 @@ const navigateTo = (url) => {
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   padding: 1rem;
-  max-height: 400px; /* Set a fixed height */
-  overflow-y: auto; /* Allow scrolling within the card */
+  max-height: 400px;
+  overflow-y: auto; 
 }
 
 .p-accordion-content {
-  max-height: 300px; /* Adjust this as necessary */
-  overflow-y: auto; /* Allow scrolling within the content */
+  max-height: 300px; 
+  overflow-y: auto; 
 }
 </style>

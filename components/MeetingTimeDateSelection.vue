@@ -34,7 +34,6 @@
 
             <!-- Step 1: Time & Date Selection -->
             <div v-if="step === 1" class="md:col-span-2 flex flex-col md:flex-row px-4">
-                <!-- Date Picker -->
                 <div class="flex flex-col">
                     <h2 class="font-bold text-lg">Select Date</h2>
                     <div class="mt-5">
@@ -43,7 +42,6 @@
                     </div>
                 </div>
 
-                <!-- Time Picker -->
                 <div class="flex flex-col mt-5 md:mt-0 md:ml-5 w-full">
                     <h2 class="font-bold text-lg">Select Time</h2>
                     <div v-if="enableTimeSlot" class="mt-4">
@@ -57,7 +55,6 @@
                 </div>
             </div>
 
-            <!-- Step 2: User Information -->
             <div v-else class="md:col-span-2 px-4">
                 <h2 class="font-bold text-lg mb-4">Enter Your Information</h2>
                 <div class="space-y-4">
@@ -78,8 +75,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Navigation Buttons -->
         <div class="flex gap-3 justify-end mt-5">
             <Button v-if="step === 2" @click="step = 1" severity="secondary" class="px-4 py-2 border rounded">
                 Back
@@ -109,7 +104,7 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import InputText from 'primevue/inputtext';
 import { useToast } from "primevue/usetoast";
-import { format } from 'date-fns'; // Added for date formatting
+import { format } from 'date-fns'; 
 
 // Props
 const props = defineProps({
@@ -162,14 +157,12 @@ const disabledDates = computed(() => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
 
-    // Disable all dates before today
     const yesterday = new Date(today)
     yesterday.setDate(today.getDate() - 1)
     for (let d = new Date(0); d <= yesterday; d.setDate(d.getDate() + 1)) {
         disabled.push(new Date(d))
     }
 
-    // Disable unavailable business days in the future
     if (props.businessInfo?.daysAvailable) {
         for (let i = 0; i < 180; i++) {
             const testDate = new Date(today)
@@ -184,7 +177,7 @@ const disabledDates = computed(() => {
     return disabled
 })
 
-// Min and max time based on business hours
+
 const minTime = computed(() => {
     if (!props.businessInfo?.startTime) return { hours: 0, minutes: 0 }
     const [hours, minutes] = props.businessInfo.startTime.split(':').map(Number)
@@ -197,7 +190,7 @@ const maxTime = computed(() => {
     return { hours, minutes }
 })
 
-// Handle date selection
+
 const handleDateSelect = async (selectedDate: Date) => {
     date.value = selectedDate;
     const dayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
@@ -339,7 +332,6 @@ const sendConfirmationEmail = async (data: EmailData): Promise<void> => {
 // Watch for business info changes
 watch(() => props.businessInfo, (newVal) => {
     if (newVal?.startTime && newVal?.endTime) {
-        // Recalculate min/max times when business hours change
     }
 }, { immediate: true })
 </script>

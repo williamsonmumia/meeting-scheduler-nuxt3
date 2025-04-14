@@ -34,23 +34,23 @@ const checkBusinessExists = async () => {
 
     if (docSnap.exists()) {
       console.log('Document data:', docSnap.data());
-      router.replace('/dashboard'); // Redirect to dashboard if business exists
+      router.replace('/dashboard'); 
     } else {
       console.log('No such document!');
     }
   } catch (error) {
     console.error('Error fetching document:', error);
   } finally {
-    loading.value = false; // Set loading to false after the check
+    loading.value = false; 
   }
 };
 
-// Run the check when the component is mounted
+
 onMounted(() => {
   checkBusinessExists();
 });
 
-// Check if the business is registered
+
 const isBusinessRegistered = async () => {
     if (!user?.email) {
         console.error('User email not found.');
@@ -74,7 +74,7 @@ const isBusinessRegistered = async () => {
         state.isLoading = false;
     }
 };
-// Watch for `user` changes and trigger registration check
+
 watch(
     () => user,
     () => {
@@ -83,7 +83,7 @@ watch(
         }
     }
 );
-// Initialize on component mount
+
 onMounted(() => {
     if (user) {
         isBusinessRegistered();
