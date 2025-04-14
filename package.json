@@ -34,6 +34,7 @@
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/core": "^12.7.0",
     "@vueuse/nuxt": "^12.7.0",
+    "chart.js": "^4.4.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -48,6 +49,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",
+    "vue-animate-onscroll": "^1.0.8",
     "vue-router": "latest",
     "vue-spinner": "^1.0.4",
     "yup": "^1.6.1"

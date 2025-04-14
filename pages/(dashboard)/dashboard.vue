@@ -1,6 +1,9 @@
 <template>
-    <!-- Show loading spinner while loading is true -->
-    <h1>Hi there</h1>
+    <div>
+        <NewTeam />
+        <!--chart-->
+        <MeetingChart />
+    </div>
 </template>
 
 <script setup>
@@ -8,3 +11,5 @@ definePageMeta({
     middleware: ['auth-logged-in'],
 })
 </script>
+
+<style lang="scss" scoped></style>

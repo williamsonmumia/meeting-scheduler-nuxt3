@@ -22,6 +22,9 @@ export default defineNuxtConfig({
   headlessui: {
     prefix: "H",
   },
+  plugins: [
+    '~/plugins/primevue.js'
+  ],
   icon: {
     customCollections: [
       {

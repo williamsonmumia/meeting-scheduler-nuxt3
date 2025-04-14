@@ -1,5 +1,11 @@
+import type { NuxtLink } from "#components";
 
 export const dashboardRoutes = [
+  {
+    title: "Dashboard",
+    icon: "heroicons:home",
+    link: "/dashboard",
+  },
   {
     title: "Meeting Type",
     icon: "heroicons:briefcase",

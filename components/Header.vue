@@ -11,7 +11,9 @@
                 </button>
                 <!-- Logo -->
                 <!-- Page title -->
-                <NuxtLink class="text-xl font-bold text-green-500" to="/">aligno</NuxtLink>
+                <a href="/" class="font-sans text-2xl"><span class="font-bold text-green-600">Align</span><span
+                        class="text-slate-500">ova</span>
+                </a>
             </div>
 
             <!-- Right side of header -->
@@ -33,7 +35,8 @@
                             <div class="p-1">
                                 <template v-for="(p, i) in navitems" :key="i">
                                     <HMenuItem v-if="!p.divider" v-slot="{ active }">
-                                        <NuxtLink :to="p.link" :class="[active && 'bg-muted',]"
+                                        <NuxtLink :to="p.link" :external="p.link === '/api/logout'"
+                                            :class="[active && 'bg-muted',]"
                                             class="inline-flex w-full items-center rounded-md p-2 text-sm font-medium">
 
                                             <img :src="p.icon" alt="" class="w-5 h-5 mr-2 dark:invert" />
