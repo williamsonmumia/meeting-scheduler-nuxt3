@@ -27,7 +27,7 @@
 <script setup lang="ts">
 const { data } = await useAsyncData(
     "new-customers",
-    () => $fetch("https://randomuser.me/api/?results=10"),
+    () => $fetch(""),
     {
         default: () => [],
         transform: (data: any) => data.results,
