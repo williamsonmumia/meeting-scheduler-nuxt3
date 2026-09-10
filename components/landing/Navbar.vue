@@ -5,14 +5,6 @@ const menuitems = [
     path: "#",
   },
   {
-    title: "Pricing",
-    path: "/pricing",
-  },
-  {
-    title: "About",
-    path: "/about",
-  },
-  {
     title: "Contact",
     path: "/contact",
   },
